@@ -1759,6 +1759,7 @@ int fini(void)
 	if (L) {
 		lua_close(L);
 		L = NULL;
+		lua_script_last_loaded = 0;
 	}
 	return SLURM_SUCCESS;
 }
