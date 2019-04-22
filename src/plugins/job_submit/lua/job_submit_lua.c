@@ -1756,7 +1756,10 @@ int init(void)
 
 int fini(void)
 {
-	lua_close (L);
+	if (L) {
+		lua_close(L);
+		L = NULL;
+	}
 	return SLURM_SUCCESS;
 }
 
