@@ -293,7 +293,7 @@ set lua_plugin 0
 log_user 0
 spawn $scontrol show config
 expect {
-	-re "SLURM_CONF *= ($alpha_numeric_special)$end_of_line" {
+	-re "SLURM_CONF *= (\\S+)$end_of_line" {
 		set config_dir [file dirname $expect_out(1,string)]
 		exp_continue
 	}
