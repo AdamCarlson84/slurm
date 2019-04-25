@@ -254,6 +254,8 @@ static int _send_data(const char *data)
 	chunk.message = xmalloc(1);
 	chunk.size = 0;
 
+	if ( strncmp(influxdb_conf.host, "https://", 8) == 0 )
+        	curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0);
 	curl_easy_setopt(curl_handle, CURLOPT_URL, url);
 	if (influxdb_conf.password)
 		curl_easy_setopt(curl_handle, CURLOPT_PASSWORD,
